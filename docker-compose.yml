@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  haproxy:
+    container_name: hm-haproxy-front
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DOMAIN: 'lab.highmaru.com'
+      EMAIL: 'contact@highmaru.com'
+    # image: haproxy:2.1
+    ports: 
+      - 80:80
+      - 443:443
+      - 9001:9001
+    volumes:
+      - ./config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+      - ./config/plugin/acme-validation.lua:/etc/haproxy/acme-validation.lua
+      # - ./config/scripts:/opt/scripts
+      - ./config/supervisord.conf:/etc/supervisord.conf
+      - ./certs:/etc/haproxy/certs
