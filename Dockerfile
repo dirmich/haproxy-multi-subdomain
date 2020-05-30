@@ -66,6 +66,7 @@ RUN apk add --no-cache --update \
     net-tools \
     iproute2 \
     certbot \
+    bash \
     openssl \
   && rm -rf /var/cache/apk/*
 
@@ -78,4 +79,5 @@ RUN chmod +x /opt/scripts/*.sh
 EXPOSE 80 443 9001
 
 # CMD ["ls","-la","/opt/scripts"]
-CMD [ "/opt/scripts/bootstrap.sh" ]
+# CMD ["cat","/opt/scripts/bootstrap.sh"]
+CMD [ "bash","/opt/scripts/bootstrap.sh" ]
