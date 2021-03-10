@@ -2,6 +2,7 @@ version: '2'
 
 services:
   haproxy:
+    image: dirmich/hm-haproxy-front:latest
     container_name: hm-haproxy-front
     build:
       context: .

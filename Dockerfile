@@ -60,14 +60,16 @@ FROM haproxy:2.1-alpine
 
 # Install certbot, supervisor, cron, libnl-utils, net-tools, iptables
 RUN apk add --no-cache --update \
-    supervisor \
-    dcron \
-    libnl3-cli \
-    net-tools \
-    iproute2 \
-    certbot \
-    bash \
-    openssl \
+  supervisor \
+  dcron \
+  libnl3-cli \
+  net-tools \
+  iproute2 \
+  certbot \
+  python3 \
+  py3-pip \
+  bash \
+  openssl \
   && rm -rf /var/cache/apk/*
 
 # Setup Supervisor
@@ -75,7 +77,8 @@ RUN mkdir -p /var/log/supervisor
 RUN mkdir /opt/scripts
 COPY config/scripts/*.sh /opt/scripts/
 RUN chmod +x /opt/scripts/*.sh
-
+RUN pip install certbot certbot-pdns
+COPY config/certbot-pdns.json /etc/letsencrypt/certbot-pdns.json
 EXPOSE 80 443 9001
 
 # CMD ["ls","-la","/opt/scripts"]
