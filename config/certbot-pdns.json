@@ -1,6 +1,6 @@
 {
   "api-key": "123fhfh3421!!@",
   "base-url": "http://highmaru.com:8500/api/v1",
-  "axfr-time": 10,
+  "axfr-time": 30,
   "verify-cert": "False"
 }
